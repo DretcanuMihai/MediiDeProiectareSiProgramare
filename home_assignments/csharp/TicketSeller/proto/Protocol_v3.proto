@@ -1,0 +1,55 @@
+syntax = "proto3";
+package networking.protocol;
+
+option java_package = "network.protobuffprotocol";
+option java_outer_classname = "TicketProtobuffs";
+
+message User{
+  string username = 1;
+  string password = 2;
+}
+
+message Festival{
+  int32 id = 1;
+  string artistName = 2;
+  string dateTime = 3;
+  string place = 4;
+  int32 availableSpots = 5;
+  int32 soldSpots = 6;
+}
+
+message Ticket{
+  int32 id = 1;
+  string buyerName = 2;
+  Festival festival = 3;
+  int32 numberOfSpots = 4;
+
+}
+message Request {
+  enum Type {Unknown = 0; LOGIN = 1; LOGOUT = 2; GET_FESTIVALS = 3;
+    GET_FESTIVALS_ON_DATE = 4; BUY_TICKET = 5;}
+
+  // Identifies which request is filled in.
+  Type type = 1;
+
+  // One of the following will be filled in, depending on the type.
+  oneof payload{
+    User user = 2;
+    Festival festival = 3;
+    Ticket ticket = 4;
+  }
+}
+
+message Response{
+  enum Type {Unknown = 0;OK = 1; ERROR = 2; GET_FESTIVALS = 3;
+    GET_FESTIVALS_ON_DATE = 4;TICKET_BOUGHT = 5;}
+
+  // Identifies which request is filled in.
+  Type type = 1;
+
+  // One of the following will be filled in, depending on the type.
+  // One of the following will be filled in, depending on the type.
+  string error = 2;
+  repeated Festival festivals = 3;
+  Ticket ticket = 4;
+}

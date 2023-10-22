@@ -1,0 +1,48 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project (':TicketSellerModel')
+    implementation project (':TicketSellerServices')
+    implementation project (':TicketSellerPersistence')
+    implementation project (':TicketSellerNetworking')
+
+    implementation 'org.javassist:javassist:3.28.0-GA'
+
+    implementation group: 'org.springframework', name: 'spring-context', version: '5.3.20'
+    implementation group: 'org.springframework', name: 'spring-jms', version: '5.3.20'
+    implementation group: 'org.apache.activemq', name: 'activemq-spring', version: '5.17.1'
+    implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.13.3'
+
+    // compile group: 'org.hibernate.dialect', name: 'sqlite-dialect', version: '0.1.0'
+    implementation group: 'org.xerial', name: 'sqlite-jdbc', version: '3.16.1'
+    implementation 'org.hibernate:hibernate-core:5.2.10.Final'
+    implementation "jakarta.xml.bind:jakarta.xml.bind-api:2.3.2"
+    implementation "org.glassfish.jaxb:jaxb-runtime:2.3.2"
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
+    // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.14.0'
+    // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.0'
+
+}
+
+test {
+    useJUnitPlatform()
+}
+
+application{
+    mainClassName='StartAMSServer'
+}

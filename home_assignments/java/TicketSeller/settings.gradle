@@ -1,0 +1,9 @@
+rootProject.name = 'TicketSeller'
+include 'TicketSellerClient'
+include 'TicketSellerModel'
+include 'TicketSellerNetworking'
+include 'TicketSellerPersistence'
+include 'TicketSellerServer'
+include 'TicketSellerServices'
+include 'TicketSellerRestServices'
+
